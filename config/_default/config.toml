@@ -1,4 +1,3 @@
-baseurl = "https://voizun-bro.github.io/test/"
 languageCode = "ja-jp"
 paginate = 5
 title = "ぼいずんのテストページ"
