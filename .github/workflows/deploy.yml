@@ -36,10 +36,15 @@ jobs:
                   hugo-version: "latest"
                   extended: true
 
-            - name: Build
-              run: hugo --minify --gc
+            - name: Setup Pages
+              id: pages
+              uses: actions/configure-pages@v4
 
-            - uses: actions/upload-pages-artifact@v3
+            - name: Build
+              run: hugo --minify --gc --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
               with:
                 path: public
 
