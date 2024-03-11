@@ -11,8 +11,6 @@ jobs:
         runs-on: ubuntu-latest
 
         permissions:
-            # Give the default GITHUB_TOKEN write permission to commit and push the
-            # added or changed files to the repository.
             contents: write
 
         steps:
@@ -40,10 +38,20 @@ jobs:
             - name: Build
               run: hugo --minify --gc
 
-            - name: Deploy 🚀
-              uses: JamesIves/github-pages-deploy-action@v4
+            - uses: actions/upload-pages-artifact@v3
               with:
-                  branch: gh-pages
-                  folder: public
-                  clean: true
-                  single-commit: true
+                path: public
+
+    deploy:
+        needs: build
+        permissions:
+            pages: write
+            id-token: write
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v3
