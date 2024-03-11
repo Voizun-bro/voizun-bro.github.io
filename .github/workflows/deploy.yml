@@ -33,9 +33,9 @@ jobs:
             - name: Setup Hugo
               run: |
                 wget -O ${{ runner.temp }}/hugo.deb \
-                ${curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | \
+                $(curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | \
                 grep "browser_download_url.*deb" | \
-                cut -d : -f 2,3 | tr -d \" | grep extended | grep amd64} && \
+                cut -d : -f 2,3 | tr -d \" | grep extended | grep amd64) && \
                 sudo dpkg -i ${{ runner.temp }}/hugo.deb && \
                 sudo snap install dart-sass
 
