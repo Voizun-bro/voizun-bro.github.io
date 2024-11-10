@@ -48,7 +48,7 @@ export default function SearchComponent({ searchData }: SearchComponentProps) {
           type="search"
           placeholder="Search posts..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
           className="w-full pl-12 pr-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
@@ -71,7 +71,7 @@ export default function SearchComponent({ searchData }: SearchComponentProps) {
                   alt=""
                   width={100}
                   height={100}
-                  className="rounded-lg object-cover"
+                  class="rounded-lg object-cover"
                 />
                 <div>
                   <h3 className="text-xl font-semibold mb-2">{result.title}</h3>
