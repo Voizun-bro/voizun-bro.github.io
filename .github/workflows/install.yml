@@ -26,3 +26,4 @@ jobs:
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
       - name: Git Auto Commit
         uses: stefanzweifel/git-auto-commit-action@v5
+
