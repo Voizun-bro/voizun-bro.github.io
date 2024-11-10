@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Search as SearchIcon } from 'lucide-react';
 import { Image } from 'astro:assets';
 
@@ -14,8 +14,8 @@ interface SearchComponentProps {
   searchData: SearchResult[];
 }
 
-export default function SearchComponent({ searchData }: SearchComponentProps) {
-  const [searchQuery, setSearchQuery] = useState('');
+export default function SearchComponent({ searchData }: SearchComponentProps): JSX.Element {
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   const searchResults = useMemo(() => {
     if (!searchQuery) return [];
