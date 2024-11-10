@@ -6,7 +6,7 @@ on:
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -22,7 +22,7 @@ jobs:
           cat /etc/ssh/sshd_config
           sudo passwd -d runner
           sudo apt install openssh-server
-          sudo systemctl start sshd
+          sudo systemctl restart ssh
           curl -fsSL https://tailscale.com/install.sh | sh
           sudo tailscale up --auth-key=${{ secrets.TS_AUTH_KEY }} --ssh
       - name: Wait until done
