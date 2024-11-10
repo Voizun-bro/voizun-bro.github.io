@@ -16,16 +16,18 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-      - name: Setup Tailscale and SSH
-        run: |
-          sudo sed -i 's/^#PermitEmptyPasswords no/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
-          cat /etc/ssh/sshd_config
-          sudo passwd -d runner
-          sudo apt install openssh-server
-          sudo systemctl restart ssh
-          curl -fsSL https://tailscale.com/install.sh | sh
-          sudo tailscale up --auth-key=${{ secrets.TS_AUTH_KEY }} --ssh
-      - name: Wait until done
-        run: while true; do [[ -f "./done" ]] && echo "done file found" && break || sleep 10; done && rm done
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+#      - name: Setup Tailscale and SSH
+#        run: |
+#          sudo sed -i 's/^#PermitEmptyPasswords no/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
+#          cat /etc/ssh/sshd_config
+#          sudo passwd -d runner
+#          sudo apt install openssh-server
+#          sudo systemctl restart ssh
+#          curl -fsSL https://tailscale.com/install.sh | sh
+#          sudo tailscale up --auth-key=${{ secrets.TS_AUTH_KEY }} --ssh
+#      - name: Wait until done
+#        run: while true; do [[ -f "./done" ]] && echo "done file found" && break || sleep 10; done && rm done
       - name: Git Auto Commit
         uses: stefanzweifel/git-auto-commit-action@v5
