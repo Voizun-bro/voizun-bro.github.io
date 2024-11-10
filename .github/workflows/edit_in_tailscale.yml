@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+      - name: Setup environment
+        run: npm install -g yarn@berry
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
         with:
