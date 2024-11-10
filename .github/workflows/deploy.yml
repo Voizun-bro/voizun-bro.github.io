@@ -26,6 +26,8 @@ jobs:
           yarn set version latest
       - name: Install, build, and upload your site
         uses: withastro/action@v2
+        env:
+          YARN_ENABLE_IMMUTABLE_INSTALLS: false
 
   deploy:
     needs: build
