@@ -14,10 +14,10 @@ interface BlogPost {
 }
 
 const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  (a: BlogPost, b: BlogPost) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 
-const postsByYear = posts.reduce((acc: Record<number, BlogPost[]>, post) => {
+const postsByYear = posts.reduce((acc: Record<number, BlogPost[]>, post: BlogPost) => {
   const year = new Date(post.data.date).getFullYear();
   if (!acc[year]) {
     acc[year] = [];
@@ -35,7 +35,7 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
       <section class="mb-12">
         <h2 class="text-3xl font-bold mb-6">{year}</h2>
         <div class="space-y-4">
-          {postsByYear[Number(year)].map((post) => (
+          {postsByYear[Number(year)].map((post: BlogPost) => (
             <a
               href={`/blog/${post.slug}`}
               class="group flex items-center gap-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
