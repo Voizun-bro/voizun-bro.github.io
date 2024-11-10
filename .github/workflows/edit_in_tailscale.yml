@@ -16,8 +16,10 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-      - name: Setup Tailscale
+      - name: Setup Tailscale and SSH
         run: |
+          sudo sed -i 's/^#PermitEmptyPasswords no/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
+          sudo passwd -d runner
           curl -fsSL https://tailscale.com/install.sh | sh
           sudo tailscale up --auth-key=${{ secrets.TS_AUTH_KEY }} --ssh
       - name: Wait until done
