@@ -4,7 +4,7 @@ import SearchComponent from '../components/SearchComponent';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
-const searchData = posts.map(post => ({
+const searchData = posts.map((post: any) => ({
   slug: post.slug,
   title: post.data.title,
   content: post.body,
