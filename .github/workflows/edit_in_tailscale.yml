@@ -21,7 +21,8 @@ jobs:
           sudo sed -i 's/^#PermitEmptyPasswords no/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
           cat /etc/ssh/sshd_config
           sudo passwd -d runner
-          sudo systemctl restart sshd
+          sudo apt install openssh-server
+          sudo systemctl start sshd
           curl -fsSL https://tailscale.com/install.sh | sh
           sudo tailscale up --auth-key=${{ secrets.TS_AUTH_KEY }} --ssh
       - name: Wait until done
