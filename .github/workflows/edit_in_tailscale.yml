@@ -19,6 +19,7 @@ jobs:
       - name: Setup Tailscale and SSH
         run: |
           sudo sed -i 's/^#PermitEmptyPasswords no/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
+          cat /etc/ssh/sshd_config
           sudo passwd -d runner
           sudo systemctl restart sshd
           curl -fsSL https://tailscale.com/install.sh | sh
