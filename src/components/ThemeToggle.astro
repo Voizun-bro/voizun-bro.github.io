@@ -1,6 +1,5 @@
----
+// ThemeToggle.astro
 import { Moon, Sun } from 'lucide-react';
----
 
 <button
   id="theme-toggle"
@@ -28,7 +27,7 @@ import { Moon, Sun } from 'lucide-react';
     document.documentElement.classList.add('dark');
   }
 
-  window.localStorage.setItem('theme', theme);
+  window.localStorage.setItem('theme', theme || 'light');
 
   const handleToggleClick = () => {
     const element = document.documentElement;
