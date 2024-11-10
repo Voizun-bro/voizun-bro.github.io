@@ -1,18 +1,15 @@
 ---
-// Navigation.astro
-import { Home, Archive, Search, Link, Moon } from 'lucide-react';
-
-const navigation = [
-  { name: 'Home', href: '/', icon: Home },
-  { name: 'Archives', href: '/archives', icon: Archive },
-  { name: 'Search', href: '/search', icon: Search },
-  { name: 'Links', href: '/links', icon: Link },
-];
+import { Home, Archive, Search, Link } from 'lucide-react';
 ---
 
 <nav class="hidden md:flex flex-col w-64 p-4 border-r border-gray-200 dark:border-gray-800">
   <div class="space-y-4">
-    {navigation.map((item) => (
+    {[
+      { name: 'Home', href: '/', icon: Home },
+      { name: 'Archives', href: '/archives', icon: Archive },
+      { name: 'Search', href: '/search', icon: Search },
+      { name: 'Links', href: '/links', icon: Link },
+    ].map((item) => (
       <a
         href={item.href}
         class="flex items-center gap-2 px-3 py-2 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
