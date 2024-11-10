@@ -19,7 +19,7 @@ jobs:
       - name: Setup Tailscale
         run: |
           curl -fsSL https://tailscale.com/install.sh | sh
-          sudo tailscale up --auth-key={ secret.TS_AUTH_KEY } --ssh
+          sudo tailscale up --auth-key=${{ secrets.TS_AUTH_KEY }} --ssh
       - name: Wait until done
         run: while true; do [[ -f "./done" ]] && echo "done file found" && break || sleep 10; done && rm done
       - name: Git Auto Commit
