@@ -18,7 +18,7 @@ jobs:
         run: |
           npm install -g pnpm
       - name: Install dependencies
-        run: pnpm add @vitejs/plugin-react
+        run: pnpm astro add tailwind react mdx && pnpm install lucide-react
         env:
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
       - name: Git Auto Commit
