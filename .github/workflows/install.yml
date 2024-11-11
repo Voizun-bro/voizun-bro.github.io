@@ -18,7 +18,7 @@ jobs:
         run: |
           npm install -g pnpm
       - name: Install dependencies
-        run: pnpm dlx tailwindcss init
+        run: pnpm install vite-plugin-node-polyfills
         env:
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
       - name: Git Auto Commit
