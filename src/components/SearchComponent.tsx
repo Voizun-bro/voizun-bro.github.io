@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, ReactElement } from 'react';
 import { Search as SearchIcon } from 'lucide-react';
 import { Image } from 'astro:assets';
 
@@ -59,7 +59,7 @@ export default function SearchComponent({ searchData }: SearchComponentProps) {
             Found {searchResults.length} results for "{searchQuery}"
           </p>
           
-          {searchResults.map((result) => (
+          {searchResults.map((result: SearchResult) => (
             <a
               key={result.slug}
               href={`/blog/${result.slug}`}
