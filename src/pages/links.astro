@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+
+interface Link {
+  title: string;
+  description: string;
+  url: string;
+  image: string;
+}
+
+const links: Link[] = [
+  {
+    title: 'GitHub',
+    description: 'The world\'s leading developer platform.',
+    url: 'https://github.com',
+    image: '/placeholder.svg?height=64&width=64',
+  },
+  {
+    title: 'TypeScript',
+    description: 'JavaScript with syntax for types.',
+    url: 'https://www.typescriptlang.org',
+    image: '/placeholder.svg?height=64&width=64',
+  },
+  // Add more links as needed
+];
+---
+
+<BaseLayout title="Links">
+  <div class="max-w-4xl mx-auto">
+    <div class="grid gap-6 md:grid-cols-2">
+      {links.map((link) => (
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group p-6 rounded-lg bg-gray-100 dark:bg-gray-800 hover:shadow-lg transition-shadow"
+        >
+          <div class="flex items-center gap-4">
+            <Image
+              src={link.image}
+              alt={link.title}
+              width={64}
+              height={64}
+              class="rounded-lg"
+            />
+            <div>
+              <h3 class="text-xl font-semibold group-hover:text-primary">
+                {link.title}
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400">
+                {link.description}
+              </p>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
