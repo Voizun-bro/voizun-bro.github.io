@@ -21,7 +21,7 @@ jobs:
           npm install -g yarn@berry
           yarn set version latest
       - name: Install dependencies
-        run: yarn add @heroicons/react astro-embed @astrojs/react @astrojs/preact && yarn remove lucide-react
+        run: yarn add astro-embed @astrojs/react @astrojs/preact
         env:
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
       - name: Git Auto Commit
