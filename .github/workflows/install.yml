@@ -21,7 +21,7 @@ jobs:
           npm install -g yarn@berry
           yarn set version latest
       - name: Install dependencies
-        run: yarn astro add tailwind
+        run: yarn add @astrojs/tailwind tailwindcss
         env:
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
       - name: Git Auto Commit
