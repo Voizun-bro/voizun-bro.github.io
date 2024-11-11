@@ -1,4 +1,4 @@
-import React, { useState, useMemo, ReactElement } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Search as SearchIcon } from 'lucide-react';
 import { Image } from 'astro:assets';
 
@@ -8,6 +8,7 @@ interface SearchResult {
   content: string;
   date: Date;
   image: string;
+  preview?: string;
 }
 
 interface SearchComponentProps {
