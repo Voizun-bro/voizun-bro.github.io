@@ -18,7 +18,7 @@ jobs:
         run: |
           npm install -g pnpm
       - name: Install dependencies
-        run: pnpm astro add tailwind react mdx && pnpm install lucide-react
+        run: pnpm add @astrojs/tailwind tailwindcss @astrojs/react @astrojs/mdx lucide-react
         env:
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
       - name: Git Auto Commit
