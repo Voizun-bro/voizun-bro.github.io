@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { Search as SearchIcon } from 'lucide-react';
+import { useState, useMemo } from 'preact/hooks';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Image } from 'astro:assets';
 
 interface SearchResult {
@@ -14,8 +14,8 @@ interface SearchComponentProps {
   searchData: SearchResult[];
 }
 
-export default function SearchComponent({ searchData }: SearchComponentProps): JSX.Element {
-  const [searchQuery, setSearchQuery] = useState<string>('');
+export default function SearchComponent({ searchData }: SearchComponentProps) {
+  const [searchQuery, setSearchQuery] = useState('');
 
   const searchResults = useMemo(() => {
     if (!searchQuery) return [];
@@ -43,12 +43,12 @@ export default function SearchComponent({ searchData }: SearchComponentProps): J
   return (
     <div className="space-y-6">
       <div className="relative">
-        <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-600" />
+        <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-600 w-5 h-5" />
         <input
           type="search"
           placeholder="Search posts..."
           value={searchQuery}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
+          onInput={(e) => setSearchQuery((e.target as HTMLInputElement).value)}
           className="w-full pl-12 pr-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
