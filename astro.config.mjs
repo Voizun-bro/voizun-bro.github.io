@@ -11,6 +11,17 @@ export default defineConfig({
     mdx(),
   ],
   vite: {
+    build: {
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+        },
+      },
+    },
+    ssr: {
+      noExternal: ['lucide-react'],
+    },
     plugins: [
       nodePolyfills({include: ['crypto','child_process','os','events','path','stream','util',]}),
     ]

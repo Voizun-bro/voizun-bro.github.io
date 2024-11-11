@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
-import { Search as SearchIcon } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { Image } from 'astro:assets';
+import dynamic from 'next/dynamic';
 
 interface SearchResult {
   slug: string;
@@ -14,6 +15,10 @@ interface SearchResult {
 interface SearchComponentProps {
   searchData: SearchResult[];
 }
+
+const SearchComponent = dynamic(() => import('../components/SearchComponent'), {
+  loading: () => <p>Loading search...</p>
+});
 
 export default function SearchComponent({ searchData }: SearchComponentProps) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -44,7 +49,7 @@ export default function SearchComponent({ searchData }: SearchComponentProps) {
   return (
     <div className="space-y-6">
       <div className="relative">
-        <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-600 w-5 h-5" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-600 w-5 h-5" />
         <input
           type="search"
           placeholder="Search posts..."
