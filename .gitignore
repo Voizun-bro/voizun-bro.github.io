@@ -6,6 +6,7 @@ dist/
 
 # dependencies
 node_modules/
+jspm_packages/
 
 # logs
 npm-debug.log*
@@ -20,10 +21,7 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+.pnpm
+.pnpm-store
+.npmrc
+
