@@ -18,7 +18,7 @@ jobs:
         run: |
           npm install -g pnpm
       - name: Install dependencies
-        run: pnpm add react react-dom
+        run: pnpm add astro-embed
         env:
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
       - name: Git Auto Commit
