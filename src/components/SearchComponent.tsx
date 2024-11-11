@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Search as SearchIcon } from 'lucide-react';
 import { Image } from 'astro:assets';
 
