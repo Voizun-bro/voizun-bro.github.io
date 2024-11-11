@@ -12,7 +12,7 @@ export default defineConfig({
   ],
   vite: {
     plugins: [
-      nodePolyfills(),
+      nodePolyfills({include: ['fs','crypto','child_process','os','events','path','stream','util',]}),
     ]
   }
 });
