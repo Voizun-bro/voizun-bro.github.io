@@ -1,7 +1,8 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
-import { markdownToHtml } from "zenn-markdown-html";
+import lib from 'zenn-markdown-html';
+const { markdownToHtml } = lib;
 import 'zenn-content-css';
 
 export async function getStaticPaths() {
