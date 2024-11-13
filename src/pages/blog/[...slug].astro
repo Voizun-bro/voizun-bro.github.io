@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import lib from 'zenn-markdown-html';
 // build時にそのまま使うとエラーになるため修正
 type MarkdownHtml = (text: string, options?: MarkdownOptions) => string
 type MarkdownHtmlAtBuild = { default: MarkdownHtml }
