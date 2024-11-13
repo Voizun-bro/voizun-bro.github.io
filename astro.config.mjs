@@ -1,30 +1,16 @@
+// @ts-check
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
-import { nodePolyfills } from 'vite-plugin-node-polyfills';
+import embeds from 'astro-embed/integration';
 
+import sitemap from '@astrojs/sitemap';
+
+import tailwind from '@astrojs/tailwind';
+
+import react from '@astrojs/react';
+
+// https://astro.build/config
 export default defineConfig({
-  integrations: [
-    tailwind(),
-    react(),
-    mdx(),
-  ],
-  vite: {
-    build: {
-      minify: 'terser',
-      terserOptions: {
-        compress: {
-          drop_console: true,
-        },
-      },
-    },
-    ssr: {
-      noExternal: ['lucide-react'],
-    },
-    plugins: [
-      nodePolyfills({include: ['crypto','child_process','os','events','path','stream','util',]}),
-    ]
-  }
+    site: 'https://voizun-bro.github.io/',
+    integrations: [mdx(), sitemap(), tailwind(), embeds(), react()],
 });
-
