@@ -1,8 +1,14 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
+
 import BlogPost from '../../layouts/BlogPost.astro';
-import lib from 'zenn-markdown-html';
+
+import 'zenn-content-css';
+
+// import markdownToHtml from 'zenn-markdown-html';
 // build時にそのまま使うとエラーになるため修正
+// https://zenn.dev/jy8752/articles/0b842e7f380fb8
+import lib from 'zenn-markdown-html';
 type MarkdownHtml = (text: string, options?: MarkdownOptions) => string
 type MarkdownHtmlAtBuild = { default: MarkdownHtml }
 
@@ -11,7 +17,6 @@ let markdownHtml: MarkdownHtml = lib
 if(typeof lib !== 'function') {
   markdownHtml = (lib as MarkdownHtmlAtBuild).default
 }
-import 'zenn-content-css';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
