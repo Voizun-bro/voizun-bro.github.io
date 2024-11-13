@@ -26,5 +26,8 @@
     "zenn-content-css": "^0.1.158",
     "zenn-embed-elements": "^0.1.158",
     "zenn-markdown-html": "^0.1.158"
+  },
+  "devDependencies": {
+    "daisyui": "^4.12.14"
   }
 }
