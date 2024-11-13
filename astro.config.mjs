@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
 import embeds from 'astro-embed/integration';
 
 import sitemap from '@astrojs/sitemap';
