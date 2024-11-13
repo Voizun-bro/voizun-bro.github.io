@@ -1,6 +1,9 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import lib from "zenn-markdown-html";
+const markdownToHtml = lib.default ? lib.default : lib;
+import 'zenn-content-css';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -12,9 +15,16 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
-const { Content } = await post.render();
+const content = markdownToHtml(post.body, {
+  embedOrigin: "https://embed.zenn.studio",
+});
+
 ---
 
 <BlogPost {...post.data}>
-	<Content />
+  <script is:inline src="https://embed.zenn.studio/js/listen-embed-event.js"
+  ></script>
+  <div class="znc">
+    <Fragment set:html={Content} />
+  </div>  
 </BlogPost>
