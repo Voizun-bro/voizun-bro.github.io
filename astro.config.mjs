@@ -11,5 +11,5 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://voizun-bro.github.io/',
-    integrations: [mdx(), sitemap(), tailwind(), embeds(), react()],
+    integrations: [sitemap(), tailwind(), embeds(), react()],
 });
