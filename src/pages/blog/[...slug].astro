@@ -1,8 +1,15 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
-import lib from 'zenn-markdown-html';
-const markdownToHtml = lib.default;
+// build時にそのまま使うとエラーになるため修正
+type MarkdownHtml = (text: string, options?: MarkdownOptions) => string
+type MarkdownHtmlAtBuild = { default: MarkdownHtml }
+
+let markdownHtml: MarkdownHtml = lib
+
+if(typeof lib !== 'function') {
+  markdownHtml = (lib as MarkdownHtmlAtBuild).default
+}
 import 'zenn-content-css';
 
 export async function getStaticPaths() {
@@ -15,15 +22,18 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
-const content = markdownToHtml(post.body, {
+const content = markdownHtml(post.body, {
   embedOrigin: "https://embed.zenn.studio",
 });
 
 ---
 
-<BlogPost {...post.data}>
+<head>
+  <!-- Astroのscript最適化処理をキャンセルするためにis:inlineを追加 -->
   <script is:inline src="https://embed.zenn.studio/js/listen-embed-event.js"
   ></script>
+</head>
+<BlogPost {...post.data}>
   <div class="znc">
     <Fragment set:html={content} />
   </div>  
